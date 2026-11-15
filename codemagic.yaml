@@ -1,5 +1,5 @@
 # Codemagic: native Swift iOS → App Store Connect / TestFlight
-# Repo: https://github.com/nextwaitech-byte/azura-ios
+# Repo: https://github.com/Dawinz/azura-ios
 # Bundle ID: tz.azurastore.app
 #
 # Codemagic Apple integration label must match exactly:
@@ -22,16 +22,23 @@ workflows:
       vars:
         XCODE_PROJECT: AzuraStore.xcodeproj
         XCODE_SCHEME: AzuraStore
-        APP_STORE_APPLE_ID: $APP_STORE_APPLE_ID  # set in Codemagic UI (numeric App Store Connect app id), optional
+        # Set APP_STORE_APPLE_ID in Codemagic UI if submit_to_app_store needs it
 
     scripts:
       - name: Set up code signing
         script: |
           xcode-project use-profiles
 
+      - name: Set build number
+        script: |
+          cd "$CM_BUILD_DIR"
+          BUILD_NUMBER=${PROJECT_BUILD_NUMBER:-${BUILD_NUMBER:-$(date +%Y%m%d%H%M)}}
+          echo "Using CFBundleVersion=$BUILD_NUMBER"
+          agvtool new-version -all "$BUILD_NUMBER" || \
+            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" AzuraStore/Info.plist
+
       - name: Build IPA
         script: |
-          BUILD_NUMBER=${BUILD_NUMBER:-$(date +%Y%m%d%H%M)}
           cd "$CM_BUILD_DIR"
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
@@ -47,4 +54,6 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-        # submit_to_app_store: false
+        # After TestFlight processing, promote the build in App Store Connect
+        # (or enable submit_to_app_store once the listing is ready for review).
+        submit_to_app_store: false
