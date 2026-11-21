@@ -11,6 +11,7 @@
 		A100000002 /* ShopViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000102 /* ShopViews.swift */; };
 		A100000005 /* AuthViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000105 /* AuthViews.swift */; };
 		A100000006 /* SellerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000106 /* SellerViews.swift */; };
+		A100000007 /* StorefrontWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000107 /* StorefrontWebView.swift */; };
 		A100000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A100000103 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		A100000102 /* ShopViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViews.swift; sourceTree = "<group>"; };
 		A100000105 /* AuthViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViews.swift; sourceTree = "<group>"; };
 		A100000106 /* SellerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViews.swift; sourceTree = "<group>"; };
+		A100000107 /* StorefrontWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorefrontWebView.swift; sourceTree = "<group>"; };
 		A100000103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A100000104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,6 +52,7 @@
 				A100000102 /* ShopViews.swift */,
 				A100000105 /* AuthViews.swift */,
 				A100000106 /* SellerViews.swift */,
+				A100000107 /* StorefrontWebView.swift */,
 				A100000103 /* Assets.xcassets */,
 				A100000104 /* Info.plist */,
 			);
@@ -137,6 +140,7 @@
 				A100000002 /* ShopViews.swift in Sources */,
 				A100000005 /* AuthViews.swift in Sources */,
 				A100000006 /* SellerViews.swift in Sources */,
+				A100000007 /* StorefrontWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

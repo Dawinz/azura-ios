@@ -5,28 +5,19 @@ struct RootView: View {
 
     var body: some View {
         Group {
-            switch store.phase {
-            case .connecting:
-                SplashView()
-            case .setup:
-                SetupView()
-            case .shop:
+            if store.isSeller && store.phase == .shop {
                 TabView {
-                    if store.isSeller {
-                        SellerOrdersView().tabItem { Label("Shop orders", systemImage: "receipt") }
-                        if store.sellerApproved {
-                            SellerProductsView().tabItem { Label("Products", systemImage: "cube.box") }
-                            SellerEarningsView().tabItem { Label("Earnings", systemImage: "banknote") }
-                        }
-                        AccountView().tabItem { Label("Me", systemImage: "person") }
-                    } else {
-                        HomeView().tabItem { Label("Home", systemImage: "house") }
-                        SearchView().tabItem { Label("Search", systemImage: "magnifyingglass") }
-                        CartView().tabItem { Label("Cart", systemImage: "bag") }
-                        AccountView().tabItem { Label("Me", systemImage: "person") }
+                    SellerOrdersView().tabItem { Label("Shop orders", systemImage: "receipt") }
+                    if store.sellerApproved {
+                        SellerProductsView().tabItem { Label("Products", systemImage: "cube.box") }
+                        SellerEarningsView().tabItem { Label("Earnings", systemImage: "banknote") }
                     }
+                    AccountView().tabItem { Label("Me", systemImage: "person") }
                 }
                 .tint(Color(red: 0.49, green: 0.23, blue: 0.93))
+            } else {
+                // Buyer experience = live mobile storefront (Hot Sales / Flash Sale / etc.)
+                StorefrontShell()
             }
         }
         .preferredColorScheme(.light)
